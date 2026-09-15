@@ -19,21 +19,20 @@ public class CartController : ControllerBase
     public async Task<IActionResult> AddItem(
         AddCartItemRequest request)
     {
-        var cart =
-            await _service.AddItemAsync(request);
+        var cart = await _service.AddItemAsync(request);
 
         return Ok(cart);
     }
 
     [HttpGet("{customerId:int}")]
-    public async Task<IActionResult> GetCart(
-        int customerId)
+    public async Task<IActionResult> GetCart(int customerId)
     {
-        var cart =
-            await _service.GetCartAsync(customerId);
+        var cart = await _service.GetCartAsync(customerId);
 
         if (cart == null)
+        {
             return NotFound();
+        }
 
         return Ok(cart);
     }
@@ -43,13 +42,14 @@ public class CartController : ControllerBase
         int customerId,
         int productId)
     {
-        var result =
-            await _service.RemoveItemAsync(
-                customerId,
-                productId);
+        var result = await _service.RemoveItemAsync(
+            customerId,
+            productId);
 
         if (!result)
+        {
             return NotFound();
+        }
 
         return NoContent();
     }

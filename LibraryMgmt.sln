@@ -16,7 +16,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "Invento
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService", "CartService\CartService\CartService.csproj", "{E790ED06-1379-44C4-8659-34980E891382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "CartService\PaymentService\PaymentService.csproj", "{1A7747A4-F3D7-4025-AC1D-E63435DCDC63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService\PaymentService.csproj", "{1A7747A4-F3D7-4025-AC1D-E63435DCDC63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{622E68D9-A332-4073-93F3-70667C9C14C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,10 @@ Global
 		{1A7747A4-F3D7-4025-AC1D-E63435DCDC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A7747A4-F3D7-4025-AC1D-E63435DCDC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A7747A4-F3D7-4025-AC1D-E63435DCDC63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622E68D9-A332-4073-93F3-70667C9C14C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622E68D9-A332-4073-93F3-70667C9C14C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622E68D9-A332-4073-93F3-70667C9C14C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622E68D9-A332-4073-93F3-70667C9C14C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{9EDCE7F7-9522-4F5C-9929-A1EF14D83B46} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E790ED06-1379-44C4-8659-34980E891382} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{1A7747A4-F3D7-4025-AC1D-E63435DCDC63} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{622E68D9-A332-4073-93F3-70667C9C14C8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B39C9C42-5FD3-473E-9E86-66A0A8222D60}

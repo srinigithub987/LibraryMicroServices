@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "SampleApi\\SampleApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "InventoryService\\InventoryService\\InventoryService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "CartService\\CartService\\CartService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "PaymentService\\PaymentService\\PaymentService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ApiGateway\\ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

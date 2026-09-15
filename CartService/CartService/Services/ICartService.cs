@@ -5,10 +5,10 @@ namespace CartService.Services;
 
 public interface ICartService
 {
-    Task<Cart> AddItemAsync(
+    Task<CartResponse> AddItemAsync(
         AddCartItemRequest request);
 
-    Task<Cart?> GetCartAsync(
+    Task<CartResponse?> GetCartAsync(
         int customerId);
 
     Task<bool> RemoveItemAsync(

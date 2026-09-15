@@ -1,4 +1,6 @@
-﻿namespace CartService.Models
+﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
+
+namespace CartService.Models
 {
     public class CartItem
     {

@@ -14,7 +14,7 @@ public class CartService : ICartService
         _context = context;
     }
 
-    public async Task<Cart> AddItemAsync(
+    public async Task<CartResponse> AddItemAsync(
         AddCartItemRequest request)
     {
         var cart = await _context.Carts
@@ -53,16 +53,22 @@ public class CartService : ICartService
 
         await _context.SaveChangesAsync();
 
-        return cart;
+        return MapToResponse(cart);
     }
 
-    public async Task<Cart?> GetCartAsync(
+    public async Task<CartResponse?> GetCartAsync(
         int customerId)
     {
-        return await _context.Carts
+        var cart = await _context.Carts
             .Include(x => x.Items)
             .FirstOrDefaultAsync(x =>
                 x.CustomerId == customerId);
+
+        if (cart == null)
+            return null;
+        
+
+        return  MapToResponse(cart);
     }
 
     public async Task<bool> RemoveItemAsync(
@@ -90,4 +96,22 @@ public class CartService : ICartService
 
         return true;
     }
+
+    private CartResponse MapToResponse(Cart cart)
+{
+    return new CartResponse
+    {
+        Id = cart.Id,
+        CustomerId = cart.CustomerId,
+        CreatedAt = cart.CreatedAt,
+
+        Items = cart.Items.Select(item => new CartItemResponse
+        {
+            Id = item.Id,
+            ProductId = item.ProductId,
+            Quantity = item.Quantity,
+            UnitPrice = item.UnitPrice
+        }).ToList()
+    };
+}
 }
