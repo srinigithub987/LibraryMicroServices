@@ -14,7 +14,7 @@ builder.Configuration
 //    options.AddPolicy("AngularPolicy", policy =>
 //    {
 //        policy
-//            .WithOrigins("http://localhost:4200")
+//           //.WithOrigins("http://localhost:4200")
 //            .AllowAnyHeader()
 //            .AllowAnyMethod()
 //            .AllowCredentials();

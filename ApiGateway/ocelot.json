@@ -1,22 +1,22 @@
 {
   "Routes": [
-    //{
-    //  "DownstreamPathTemplate": "/api/customers/{everything}",
-    //  "DownstreamScheme": "http",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 8001
-    //    }
-    //  ],
-    //  "UpstreamPathTemplate": "/api/customers/{everything}",
-    //  "UpstreamHttpMethod": [
-    //    "GET",
-    //    "POST",
-    //    "PUT",
-    //    "DELETE"
-    //  ]
-    //},
+    {
+      "DownstreamPathTemplate": "/api/customers/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/customers/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    },
 
     {
       "DownstreamPathTemplate": "/api/products/{everything}",
