@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // =====================================================
 
 builder.Configuration.AddJsonFile(
-    "ocelot.json",
+    "ocelot.Local.json",
     optional: false,
     reloadOnChange: true
 );
