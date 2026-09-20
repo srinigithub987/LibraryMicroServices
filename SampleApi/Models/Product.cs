@@ -1,4 +1,4 @@
-﻿namespace SampleApi.Models;
+﻿namespace ProductService.Models;
 
 public class Product
 {

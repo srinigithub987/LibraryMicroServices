@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using InventoryService.Data;
-using InventoryService.Models;
+using InventoriesService.Data;
+using InventoriesService.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace InventoryService.Controllers
+namespace InventoriesService.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class InventoriesController : ControllerBase

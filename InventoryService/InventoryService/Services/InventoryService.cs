@@ -1,16 +1,16 @@
-﻿using InventoryService.Data;
-using InventoryService.DTOs;
-using InventoryService.Models;
+﻿using InventoriesService.Data;
+using InventoriesService.DTOs;
+using InventoriesService.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventoryService.Services
+namespace InventoriesService.Services
 {
   
-        public class InventoryService : IInventoryService
+        public class InventoriesService : IInventoriesService
         {
             private readonly InventoryDbContext _context;
 
-            public InventoryService(
+            public InventoriesService(
                 InventoryDbContext context)
             {
                 _context = context;

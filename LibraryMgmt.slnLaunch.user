@@ -3,11 +3,11 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "SampleApi\\SampleApi.csproj",
+        "Path": "SampleApi\\ProductService.csproj",
         "Action": "Start"
       },
       {
-        "Path": "InventoryService\\InventoryService\\InventoryService.csproj",
+        "Path": "InventoryService\\InventoryService\\InventoriesService.csproj",
         "Action": "Start"
       },
       {

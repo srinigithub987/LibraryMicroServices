@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "customer-service",
           "Port": 8001
         }
       ],
@@ -17,13 +17,12 @@
         "DELETE"
       ]
     },
-
     {
       "DownstreamPathTemplate": "/api/products/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "product-service",
           "Port": 5001
         }
       ],
@@ -33,15 +32,19 @@
         "POST",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ]
+      }
     },
-
     {
       "DownstreamPathTemplate": "/api/inventories/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "inventory-service",
           "Port": 5002
         }
       ],
@@ -51,15 +54,19 @@
         "POST",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ]
+      }
     },
-
     {
       "DownstreamPathTemplate": "/api/cart/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "cart-service",
           "Port": 5003
         }
       ],
@@ -69,15 +76,19 @@
         "POST",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ]
+      }
     },
-
     {
       "DownstreamPathTemplate": "/api/payments/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "payment-service",
           "Port": 5004
         }
       ],
@@ -87,10 +98,14 @@
         "POST",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ]
+      }
     }
   ],
-
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5000"
   }

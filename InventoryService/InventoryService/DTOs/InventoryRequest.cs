@@ -1,4 +1,4 @@
-﻿namespace InventoryService.DTOs
+﻿namespace InventoriesService.DTOs
 {
     public class InventoryRequest
     {

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PaymentService.DTOs;
 using PaymentService.Services;
 
 namespace PaymentService.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/payments")]
 public class PaymentController : ControllerBase

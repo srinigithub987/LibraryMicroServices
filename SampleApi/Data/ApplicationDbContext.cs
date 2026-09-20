@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SampleApi.Models;
+using ProductService.Models;
 using System.Collections.Generic;
 
-namespace SampleApi.Data;
+namespace ProductService.Data;
 
 public class ApplicationDbContext : DbContext
 {

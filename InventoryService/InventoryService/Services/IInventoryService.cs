@@ -1,8 +1,8 @@
-﻿using InventoryService.DTOs;
+﻿using InventoriesService.DTOs;
 
-namespace InventoryService.Services
+namespace InventoriesService.Services
 {
-    public interface IInventoryService
+    public interface IInventoriesService
     {
         Task<InventoryResponse?> GetByProductIdAsync(
        int productId);

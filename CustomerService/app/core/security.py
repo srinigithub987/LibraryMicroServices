@@ -39,7 +39,10 @@ def create_access_token(
     )
 
     payload.update({
-        "exp": expire
+        "exp": expire,
+        "SecretKey": settings.JWT_SECRET_KEY,
+        "iss": settings.JWT_ISSUER,
+        "aud": settings.JWT_AUDIENCE
     })
 
     return jwt.encode(

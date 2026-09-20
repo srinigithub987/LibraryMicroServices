@@ -1,4 +1,4 @@
-namespace InventoryService
+namespace InventoriesService
 {
     public class WeatherForecast
     {
