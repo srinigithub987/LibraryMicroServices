@@ -1,60 +1,58 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductService.Data;
 using ProductService.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductService.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class BooksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ProductsController(ApplicationDbContext context)
+        public BooksController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Products
+        // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Book>>> GetBook()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Book.ToListAsync();
         }
 
-        // GET: api/Products/5
+        // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<Book>> GetBook(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var book = await _context.Book.FindAsync(id);
 
-            if (product == null)
+            if (book == null)
             {
                 return NotFound();
             }
 
-            return product;
+            return book;
         }
 
-        // PUT: api/Products/5
+        // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<IActionResult> PutBook(int id, Book book)
         {
-            if (id != product.Id)
+            if (id != book.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            _context.Entry(book).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +60,7 @@ namespace ProductService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id))
+                if (!BookExists(id))
                 {
                     return NotFound();
                 }
@@ -75,36 +73,36 @@ namespace ProductService.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
+        // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<Book>> PostBook(Book book)
         {
-            _context.Products.Add(product);
+            _context.Book.Add(book);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return CreatedAtAction("GetBook", new { id = book.id }, book);
         }
 
-        // DELETE: api/Products/5
+        // DELETE: api/Books/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteBook(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var book = await _context.Book.FindAsync(id);
+            if (book == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(product);
+            _context.Book.Remove(book);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ProductExists(int id)
+        private bool BookExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _context.Book.Any(e => e.id == id);
         }
     }
 }

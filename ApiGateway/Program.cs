@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Ocelot Configuration
 // =====================================================
 
-builder.Configuration.AddJsonFile(
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile(
     "ocelot.Local.json",
     optional: false,
     reloadOnChange: true
@@ -76,7 +78,6 @@ builder.Services
                 };
         }
     );
-
 
 builder.Services.AddAuthorization();
 

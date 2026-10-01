@@ -6,90 +6,102 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var jwtSecretKey = builder.Configuration["Jwt:SecretKey"] //"MyLibraryManagementSecretKey123456789!"
-    ?? throw new InvalidOperationException(
-        "JWT SecretKey is not configured.");
+//var jwtSecretKey = builder.Configuration["Jwt:SecretKey"] //"MyLibraryManagementSecretKey123456789!"
+//    ?? throw new InvalidOperationException(
+//        "JWT SecretKey is not configured.");
 
-var jwtIssuer = builder.Configuration["Jwt:Issuer"] //"LibraryManagement.CustomerService" 
-    ?? throw new InvalidOperationException(
-        "JWT Issuer is not configured.");
+//var jwtIssuer = builder.Configuration["Jwt:Issuer"] //"LibraryManagement.CustomerService" 
+//    ?? throw new InvalidOperationException(
+//        "JWT Issuer is not configured.");
 
-var jwtAudience = builder.Configuration["Jwt:Audience"] //"LibraryManagement.Api" 
-    ?? throw new InvalidOperationException(
-        "JWT Audience is not configured.");
-
-
-Console.WriteLine($"JWT key loaded: {!string.IsNullOrWhiteSpace(jwtSecretKey)}");
-Console.WriteLine($"JWT key length: {jwtSecretKey.Length}");
-Console.WriteLine($"JWT issuer: {jwtIssuer}");
-Console.WriteLine($"JWT audience: {jwtAudience}");
+//var jwtAudience = builder.Configuration["Jwt:Audience"] //"LibraryManagement.Api" 
+//    ?? throw new InvalidOperationException(
+//        "JWT Audience is not configured.");
 
 
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.RequireHttpsMetadata = false;
+//Console.WriteLine($"JWT key loaded: {!string.IsNullOrWhiteSpace(jwtSecretKey)}");
+//Console.WriteLine($"JWT key length: {jwtSecretKey.Length}");
+//Console.WriteLine($"JWT issuer: {jwtIssuer}");
+//Console.WriteLine($"JWT audience: {jwtAudience}");
 
-        options.TokenValidationParameters =
-            new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
 
-                IssuerSigningKey =
-                    new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtSecretKey)
-                    ),
+//builder.Services
+//    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(options =>
+//    {
+//        options.RequireHttpsMetadata = false;
 
-                ValidAlgorithms = new[]
-                {
-                    SecurityAlgorithms.HmacSha256
-                },
+//        options.TokenValidationParameters =
+//            new TokenValidationParameters
+//            {
+//                ValidateIssuerSigningKey = true,
 
-                ValidateIssuer = true,
-                ValidIssuer = jwtIssuer,
+//                IssuerSigningKey =
+//                    new SymmetricSecurityKey(
+//                        Encoding.UTF8.GetBytes(jwtSecretKey)
+//                    ),
 
-                ValidateAudience = true,
-                ValidAudience = jwtAudience,
+//                ValidAlgorithms = new[]
+//                {
+//                    SecurityAlgorithms.HmacSha256
+//                },
 
-                ValidateLifetime = true,
+//                ValidateIssuer = true,
+//                ValidIssuer = jwtIssuer,
 
-                ClockSkew = TimeSpan.FromSeconds(30),
+//                ValidateAudience = true,
+//                ValidAudience = jwtAudience,
 
-                NameClaimType = "email"
-            };
+//                ValidateLifetime = true,
 
-        options.Events = new JwtBearerEvents
+//                ClockSkew = TimeSpan.FromSeconds(30),
+
+//                NameClaimType = "email"
+//            };
+
+//        options.Events = new JwtBearerEvents
+//        {
+//            OnAuthenticationFailed = context =>
+//            {
+//                Console.WriteLine("===== JWT AUTH FAILED =====");
+//                Console.WriteLine(
+//                    $"Type: {context.Exception.GetType().FullName}");
+//                Console.WriteLine(
+//                    $"Message: {context.Exception.Message}");
+//                Console.WriteLine(
+//                    context.Exception.ToString());
+
+//                return Task.CompletedTask;
+//            },
+
+//            OnTokenValidated = context =>
+//            {
+//                Console.WriteLine("===== JWT VALIDATED =====");
+
+//                foreach (var claim in context.Principal!.Claims)
+//                {
+//                    Console.WriteLine(
+//                        $"{claim.Type} = {claim.Value}");
+//                }
+
+//                return Task.CompletedTask;
+//            }
+//        };
+//    });
+
+//builder.Services.AddAuthorization();
+
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Allow5173",
+        policy =>
         {
-            OnAuthenticationFailed = context =>
-            {
-                Console.WriteLine("===== JWT AUTH FAILED =====");
-                Console.WriteLine(
-                    $"Type: {context.Exception.GetType().FullName}");
-                Console.WriteLine(
-                    $"Message: {context.Exception.Message}");
-                Console.WriteLine(
-                    context.Exception.ToString());
-
-                return Task.CompletedTask;
-            },
-
-            OnTokenValidated = context =>
-            {
-                Console.WriteLine("===== JWT VALIDATED =====");
-
-                foreach (var claim in context.Principal!.Claims)
-                {
-                    Console.WriteLine(
-                        $"{claim.Type} = {claim.Value}");
-                }
-
-                return Task.CompletedTask;
-            }
-        };
-    });
-
-builder.Services.AddAuthorization();
+            policy.WithOrigins("http://localhost:5173") // allow frontend on port 5173
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddControllers();
 
@@ -112,8 +124,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+
+// Enable CORS
+app.UseCors("Allow5173");
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.MapControllers();
 

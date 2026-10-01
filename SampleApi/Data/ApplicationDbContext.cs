@@ -13,4 +13,7 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Book> Books => Set<Book>();
+
+    public DbSet<ProductService.Models.Book> Book { get; set; } = default!;
 }
